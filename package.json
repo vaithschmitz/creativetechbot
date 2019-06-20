@@ -1,0 +1,15 @@
+{
+  "name": "ls",
+  "version": "0.0.1",
+  "description": "creativetechbot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vaithschmitz@googlemail.com",
+  "license": "ISC",
+  "dependencies": {
+    "node-twitterbot": "^0.2.2",
+    "twit": "^2.2.11"
+  }
+}
