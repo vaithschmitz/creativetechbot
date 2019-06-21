@@ -1,7 +1,7 @@
-const twit = require('twit'),
+const twit = require('twit')
 
 // env keys for deploy
-const Twitter = new Twit({
+const Twitter = new twit({
 consumer_key: process.env.CONSUMER_KEY,
 consumer_secret: process.env.CONSUMER_SECRET,
 access_token: process.env.ACCESS_TOKEN,
@@ -48,3 +48,4 @@ var retweet = function() {
 
 
 
+retweet()
