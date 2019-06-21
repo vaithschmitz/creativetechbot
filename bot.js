@@ -45,12 +45,6 @@ var retweet = function() {
     });
 }
 
-retweet();
-// retweet in every 25 minutes
-setInterval(retweet, 1500000);
-
-
-
 
 
 
