@@ -1,5 +1,6 @@
 const twit = require('twit')
 
+
 // env keys for deploy
 const Twitter = new twit({
 consumer_key: process.env.CONSUMER_KEY,
@@ -7,6 +8,8 @@ consumer_secret: process.env.CONSUMER_SECRET,
 access_token: process.env.ACCESS_TOKEN,
 access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
+
+const Twitter = new twit(config)
 
 
 var retweet = function() {
@@ -25,7 +28,8 @@ var retweet = function() {
 
     Twitter.get('search/tweets', randQ(), function(err, data) {
         if (!err) {
-            var retweetId = data.statuses[0].id_str;
+            let x = [Math.floor(Math.random()*data.statuses.length)]
+            var retweetId = data.statuses[x].id_str;
             Twitter.post('statuses/retweet/:id', {
                 id: retweetId
             }, function(err, response) {
@@ -43,6 +47,7 @@ var retweet = function() {
           console.log('Something went wrong while SEARCHING...');
         }
     });
+    
 }
 
 
