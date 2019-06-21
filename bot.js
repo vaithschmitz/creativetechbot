@@ -1,9 +1,13 @@
-// Dependencies =========================
-var
-    twit = require('twit'),
-    config = require('./config');
+const twit = require('twit'),
 
-var Twitter = new twit(config);
+// env keys for deploy
+const Twitter = new Twit({
+consumer_key: process.env.CONSUMER_KEY,
+consumer_secret: process.env.CONSUMER_SECRET,
+access_token: process.env.ACCESS_TOKEN,
+access_token_secret: process.env.ACCESS_TOKEN_SECRET
+});
+
 
 var retweet = function() {
 
@@ -20,32 +24,27 @@ var retweet = function() {
     
 
     Twitter.get('search/tweets', randQ(), function(err, data) {
-      // if there no errors
         if (!err) {
-          // grab ID of tweet to retweet
-          console.log(data)
             var retweetId = data.statuses[0].id_str;
-            // Tell TWITTER to retweet
             Twitter.post('statuses/retweet/:id', {
                 id: retweetId
             }, function(err, response) {
                 if (response) {
                     console.log('Retweeted!!!');
                 }
-                // if there was an error while tweeting
+
                 if (err) {
                     console.log('Something went wrong while RETWEETING... Duplication maybe...');
                 }
             });
         }
-        // if unable to Search a tweet
+
         else {
           console.log('Something went wrong while SEARCHING...');
         }
     });
 }
 
-// grab & retweet as soon as program is running...
 retweet();
 // retweet in every 25 minutes
 setInterval(retweet, 1500000);
